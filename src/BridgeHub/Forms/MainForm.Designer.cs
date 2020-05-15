@@ -32,11 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.SettingsButton = new MetroFramework.Controls.MetroButton();
             this.TrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.DashbordLayout = new System.Windows.Forms.TableLayoutPanel();
             this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DashbordLayout = new System.Windows.Forms.TableLayoutPanel();
             this.TrayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,7 @@
             this.SettingsButton.TabIndex = 0;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // TrayIcon
             // 
@@ -59,7 +60,40 @@
             this.TrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayIcon.Icon")));
             this.TrayIcon.Text = "Bridge Hub";
             this.TrayIcon.Visible = true;
+            this.TrayIcon.DoubleClick += new System.EventHandler(this.TrayIcon_DoubleClick);
+            this.TrayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_MouseClick);
             this.TrayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_MouseDoubleClick);
+            // 
+            // TrayMenu
+            // 
+            this.TrayMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(16)))));
+            this.TrayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openMenuItem,
+            this.toolStripSeparator1,
+            this.ExitMenuItem});
+            this.TrayMenu.Name = "TrayMenu";
+            this.TrayMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.TrayMenu.Size = new System.Drawing.Size(167, 54);
+            // 
+            // openMenuItem
+            // 
+            this.openMenuItem.ForeColor = System.Drawing.Color.White;
+            this.openMenuItem.Name = "openMenuItem";
+            this.openMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.openMenuItem.Text = "Open Bridge Hub";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
+            // 
+            // ExitMenuItem
+            // 
+            this.ExitMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ExitMenuItem.Name = "ExitMenuItem";
+            this.ExitMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.ExitMenuItem.Text = "Exit Bridge Hub";
+            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
             // DashbordLayout
             // 
@@ -75,38 +109,6 @@
             this.DashbordLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.DashbordLayout.Size = new System.Drawing.Size(617, 442);
             this.DashbordLayout.TabIndex = 1;
-            // 
-            // TrayMenu
-            // 
-            this.TrayMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(16)))));
-            this.TrayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openMenuItem,
-            this.toolStripSeparator1,
-            this.ExitMenuItem});
-            this.TrayMenu.Name = "TrayMenu";
-            this.TrayMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.TrayMenu.Size = new System.Drawing.Size(167, 54);
-            // 
-            // ExitMenuItem
-            // 
-            this.ExitMenuItem.ForeColor = System.Drawing.Color.White;
-            this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.ExitMenuItem.Text = "Exit Bridge Hub";
-            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
-            // 
-            // openMenuItem
-            // 
-            this.openMenuItem.ForeColor = System.Drawing.Color.White;
-            this.openMenuItem.Name = "openMenuItem";
-            this.openMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.openMenuItem.Text = "Open Bridge Hub";
-            this.openMenuItem.Click += new System.EventHandler(this.openMenuItem_Click);
             // 
             // MainForm
             // 
