@@ -29,35 +29,36 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LightDashboardControl));
-            this.DeviceTitle = new MetroFramework.Controls.MetroLabel();
+            this.DeviceName = new MetroFramework.Controls.MetroLabel();
             this.StateImage = new System.Windows.Forms.PictureBox();
             this.BrightnessSlider = new MetroFramework.Controls.MetroTrackBar();
             this.OnToggle = new MetroFramework.Controls.MetroToggle();
+            this.LightColorIndicator = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.StateImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // DeviceTitle
+            // DeviceName
             // 
-            this.DeviceTitle.AutoSize = true;
-            this.DeviceTitle.CustomBackground = true;
-            this.DeviceTitle.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.DeviceTitle.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.DeviceTitle.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
-            this.DeviceTitle.Location = new System.Drawing.Point(51, 16);
-            this.DeviceTitle.Name = "DeviceTitle";
-            this.DeviceTitle.Size = new System.Drawing.Size(80, 25);
-            this.DeviceTitle.Style = MetroFramework.MetroColorStyle.Blue;
-            this.DeviceTitle.StyleManager = null;
-            this.DeviceTitle.TabIndex = 0;
-            this.DeviceTitle.Text = "Light 01";
-            this.DeviceTitle.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.DeviceTitle.UseStyleColors = false;
+            this.DeviceName.AutoSize = true;
+            this.DeviceName.CustomBackground = true;
+            this.DeviceName.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.DeviceName.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.DeviceName.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
+            this.DeviceName.Location = new System.Drawing.Point(51, 13);
+            this.DeviceName.Name = "DeviceName";
+            this.DeviceName.Size = new System.Drawing.Size(80, 25);
+            this.DeviceName.Style = MetroFramework.MetroColorStyle.Blue;
+            this.DeviceName.StyleManager = null;
+            this.DeviceName.TabIndex = 0;
+            this.DeviceName.Text = "Light 01";
+            this.DeviceName.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.DeviceName.UseStyleColors = false;
             // 
             // StateImage
             // 
             this.StateImage.BackColor = System.Drawing.Color.Transparent;
             this.StateImage.Image = ((System.Drawing.Image)(resources.GetObject("StateImage.Image")));
-            this.StateImage.Location = new System.Drawing.Point(13, 13);
+            this.StateImage.Location = new System.Drawing.Point(16, 6);
             this.StateImage.Name = "StateImage";
             this.StateImage.Size = new System.Drawing.Size(32, 32);
             this.StateImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -72,12 +73,12 @@
             this.BrightnessSlider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.BrightnessSlider.CustomBackground = true;
             this.BrightnessSlider.LargeChange = ((uint)(5u));
-            this.BrightnessSlider.Location = new System.Drawing.Point(13, 51);
+            this.BrightnessSlider.Location = new System.Drawing.Point(16, 51);
             this.BrightnessSlider.Maximum = 100;
             this.BrightnessSlider.Minimum = 0;
             this.BrightnessSlider.MouseWheelBarPartitions = 10;
             this.BrightnessSlider.Name = "BrightnessSlider";
-            this.BrightnessSlider.Size = new System.Drawing.Size(274, 23);
+            this.BrightnessSlider.Size = new System.Drawing.Size(271, 23);
             this.BrightnessSlider.SmallChange = ((uint)(1u));
             this.BrightnessSlider.Style = MetroFramework.MetroColorStyle.Blue;
             this.BrightnessSlider.StyleManager = null;
@@ -94,7 +95,7 @@
             this.OnToggle.DisplayStatus = false;
             this.OnToggle.FontSize = MetroFramework.MetroLinkSize.Small;
             this.OnToggle.FontWeight = MetroFramework.MetroLinkWeight.Regular;
-            this.OnToggle.Location = new System.Drawing.Point(237, 22);
+            this.OnToggle.Location = new System.Drawing.Point(237, 12);
             this.OnToggle.Name = "OnToggle";
             this.OnToggle.Size = new System.Drawing.Size(50, 17);
             this.OnToggle.Style = MetroFramework.MetroColorStyle.Blue;
@@ -105,18 +106,28 @@
             this.OnToggle.UseStyleColors = false;
             this.OnToggle.UseVisualStyleBackColor = true;
             // 
+            // LightColorIndicator
+            // 
+            this.LightColorIndicator.BackColor = System.Drawing.Color.White;
+            this.LightColorIndicator.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LightColorIndicator.Location = new System.Drawing.Point(0, 0);
+            this.LightColorIndicator.Name = "LightColorIndicator";
+            this.LightColorIndicator.Size = new System.Drawing.Size(5, 85);
+            this.LightColorIndicator.TabIndex = 4;
+            // 
             // LightDashboardControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.Controls.Add(this.LightColorIndicator);
             this.Controls.Add(this.OnToggle);
             this.Controls.Add(this.BrightnessSlider);
             this.Controls.Add(this.StateImage);
-            this.Controls.Add(this.DeviceTitle);
+            this.Controls.Add(this.DeviceName);
             this.CustomBackground = true;
             this.Name = "LightDashboardControl";
-            this.Padding = new System.Windows.Forms.Padding(10);
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.Size = new System.Drawing.Size(300, 85);
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.Click += new System.EventHandler(this.LightDashboardControl_Click);
@@ -128,9 +139,10 @@
 
         #endregion
 
-        private MetroFramework.Controls.MetroLabel DeviceTitle;
+        private MetroFramework.Controls.MetroLabel DeviceName;
         private System.Windows.Forms.PictureBox StateImage;
         private MetroFramework.Controls.MetroTrackBar BrightnessSlider;
         private MetroFramework.Controls.MetroToggle OnToggle;
+        private System.Windows.Forms.Panel LightColorIndicator;
     }
 }

@@ -57,6 +57,10 @@
     <Compile Include="Controls\LightDashboardControl.Designer.cs">
       <DependentUpon>LightDashboardControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\BridgeApi.cs" />
+    <Compile Include="Core\Helper.cs" />
+    <Compile Include="Core\HueXYZ.cs" />
+    <Compile Include="Core\Light.cs" />
     <Compile Include="Forms\LightForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,8 +122,6 @@
       <Name>ColorWheel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,13 +1,23 @@
-﻿using BridgeHub.Forms;
+﻿using BridgeHub.Core;
+using BridgeHub.Forms;
 using MetroFramework.Controls;
 
 namespace BridgeHub.Controls
 {
     public partial class LightDashboardControl : MetroUserControl
     {
-        public LightDashboardControl()
+        private int lightId;
+        private Light light;
+        
+        public LightDashboardControl(int lightId)
         {
+            this.lightId = lightId;
+
             InitializeComponent();
+
+            this.light = BridgeApi.GetLight(lightId);
+
+            this.DeviceName.Text = light.Name;
         }
 
         private void StateImage_Click(object sender, System.EventArgs e)
@@ -22,7 +32,7 @@ namespace BridgeHub.Controls
 
         private void ShowLightForm()
         {
-            LightForm lightForm = new LightForm();
+            LightForm lightForm = new LightForm(this.lightId);
             lightForm.ShowDialog(this);
         }
     }

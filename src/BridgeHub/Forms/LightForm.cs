@@ -1,4 +1,5 @@
 ﻿using System;
+using BridgeHub.Core;
 using RestSharp;
 using MetroFramework.Forms;
 using Newtonsoft.Json;
@@ -8,10 +9,18 @@ namespace BridgeHub.Forms
     public partial class LightForm : MetroForm
     {
         private bool dragging = false;
+        private int lightId;
+        private Light light;
 
-        public LightForm()
+        public LightForm(int lightId)
         {
+            this.lightId = lightId;
+            this.light = BridgeApi.GetLight(lightId);
+
             InitializeComponent();
+
+            this.Text = this.light.Name;
+            this.OnToggle.Checked = this.light.On;
         }
 
         private void ColorWheel_ColorChanged(object sender, EventArgs e)
@@ -19,23 +28,9 @@ namespace BridgeHub.Forms
             // Send HTTP Request
         }
 
-        private void OnToggle_CheckedChanged(object sender, EventArgs e)
+        private async void OnToggle_CheckedChanged(object sender, EventArgs e)
         {
-            var client = new RestClient("http://localhost/api/2987683a38804f3787fe19781175e6f3/lights/100");
-            
-            var request = new RestRequest("state", DataFormat.Json);
-            request.AddHeader("Content-type", "application/json");
-
-            var body = new { on = this.OnToggle.Checked} ;
-            var json = JsonConvert.SerializeObject(body);
-
-            Console.WriteLine(json);
-
-            request.AddParameter("application/json", json, ParameterType.RequestBody);
-
-            var response = client.Put(request);
-            
-            Console.WriteLine(response.Content);
+            await BridgeApi.SetOn(this.lightId, this.OnToggle.Checked);
         }
 
         private void BrightnessSlider_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
@@ -49,15 +44,7 @@ namespace BridgeHub.Forms
             {
                 this.dragging = false;
 
-                var client = new RestClient("http://localhost/api/2987683a38804f3787fe19781175e6f3/lights/100");
-
-                var request = new RestRequest("state", Method.PUT, DataFormat.Json);
-                request.AddHeader("Content-type", "application/json");
-
-                var body = new { bri = this.BrightnessSlider.Value };
-                var json = JsonConvert.SerializeObject(body);
-                request.AddParameter("application/json", json, ParameterType.RequestBody);
-                var response = await client.ExecuteTaskAsync(request);
+                await BridgeApi.SetBrightness(this.lightId, this.BrightnessSlider.Value);
             }
         }
     }
