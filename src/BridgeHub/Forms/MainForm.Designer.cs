@@ -1,4 +1,4 @@
-﻿namespace BridgeHub
+﻿namespace BridgeHub.Forms
 {
     partial class MainForm
     {
@@ -37,6 +37,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DashbordLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.ProgressSpinner = new MetroFramework.Controls.MetroProgressSpinner();
             this.TrayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,11 +110,24 @@
             this.DashbordLayout.Size = new System.Drawing.Size(617, 442);
             this.DashbordLayout.TabIndex = 1;
             // 
+            // ProgressSpinner
+            // 
+            this.ProgressSpinner.CustomBackground = false;
+            this.ProgressSpinner.Location = new System.Drawing.Point(300, 28);
+            this.ProgressSpinner.Maximum = 100;
+            this.ProgressSpinner.Name = "ProgressSpinner";
+            this.ProgressSpinner.Size = new System.Drawing.Size(64, 64);
+            this.ProgressSpinner.Style = MetroFramework.MetroColorStyle.Blue;
+            this.ProgressSpinner.StyleManager = null;
+            this.ProgressSpinner.TabIndex = 0;
+            this.ProgressSpinner.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 563);
+            this.Controls.Add(this.ProgressSpinner);
             this.Controls.Add(this.DashbordLayout);
             this.Controls.Add(this.SettingsButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -121,7 +135,9 @@
             this.Name = "MainForm";
             this.Text = "Bridge Hub";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.TrayMenu.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -137,6 +153,7 @@
         private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem openMenuItem;
+        private MetroFramework.Controls.MetroProgressSpinner ProgressSpinner;
     }
 }
 

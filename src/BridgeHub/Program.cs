@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using BridgeHub.Core;
+using System;
 using System.Windows.Forms;
-using BridgeHub.Core;
+using BridgeHub.Forms;
 
 namespace BridgeHub
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             BridgeApi.Init();
 

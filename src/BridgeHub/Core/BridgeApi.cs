@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BridgeHub.Core
 {
@@ -30,6 +29,7 @@ namespace BridgeHub.Core
                 Light l = new Light((int)float.Parse(light.Key));
                 l.Name = light.Value.Value<String>("name");
                 l.On = light.Value["state"].Value<bool>("on");
+                l.Brightness = light.Value["state"].Value<int>("bri");
                 lights.Add(l);
             }
 
@@ -46,11 +46,17 @@ namespace BridgeHub.Core
             Light l = new Light(id);
             Console.WriteLine(jObject.GetValue("name"));
             l.Name = (string)jObject.GetValue("name");
-            l.On = jObject.GetValue("state").Value<bool>("on");
+
+            var lightState = jObject.GetValue("state");
+
+            l.On = lightState.Value<bool>("on");
+            l.Brightness = lightState.Value<int>("bri");
+
+            Console.WriteLine(lightState.Value<int>("bri"));
             //Console.WriteLine(jObject.GetValue("state").Value<String>("xy"));
 
             return l;
-        } 
+        }
 
         public static async Task<IRestResponse> SetBrightness(int deviceId, float brightness)
         {

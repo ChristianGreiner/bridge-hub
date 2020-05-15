@@ -74,7 +74,7 @@
             this.BrightnessSlider.CustomBackground = true;
             this.BrightnessSlider.LargeChange = ((uint)(5u));
             this.BrightnessSlider.Location = new System.Drawing.Point(16, 51);
-            this.BrightnessSlider.Maximum = 100;
+            this.BrightnessSlider.Maximum = 254;
             this.BrightnessSlider.Minimum = 0;
             this.BrightnessSlider.MouseWheelBarPartitions = 10;
             this.BrightnessSlider.Name = "BrightnessSlider";
@@ -85,7 +85,9 @@
             this.BrightnessSlider.TabIndex = 2;
             this.BrightnessSlider.Text = "Brightness";
             this.BrightnessSlider.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.BrightnessSlider.Value = 50;
+            this.BrightnessSlider.Value = 254;
+            this.BrightnessSlider.Scroll += new System.Windows.Forms.ScrollEventHandler(this.BrightnessSlider_Scroll);
+            this.BrightnessSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BrightnessSlider_MouseUp);
             // 
             // OnToggle
             // 
@@ -105,6 +107,7 @@
             this.OnToggle.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.OnToggle.UseStyleColors = false;
             this.OnToggle.UseVisualStyleBackColor = true;
+            this.OnToggle.CheckedChanged += new System.EventHandler(this.OnToggle_CheckedChanged);
             // 
             // LightColorIndicator
             // 

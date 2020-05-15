@@ -1,8 +1,6 @@
-﻿using System;
-using BridgeHub.Core;
-using RestSharp;
+﻿using BridgeHub.Core;
 using MetroFramework.Forms;
-using Newtonsoft.Json;
+using System;
 
 namespace BridgeHub.Forms
 {
@@ -21,6 +19,7 @@ namespace BridgeHub.Forms
 
             this.Text = this.light.Name;
             this.OnToggle.Checked = this.light.On;
+            this.BrightnessSlider.Value = light.Brightness;
         }
 
         private void ColorWheel_ColorChanged(object sender, EventArgs e)

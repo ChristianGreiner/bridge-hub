@@ -1,18 +1,22 @@
-﻿
+﻿using BridgeHub.Controls;
+using BridgeHub.Core;
+using MetroFramework.Forms;
 using System;
 using System.Windows.Forms;
-using BridgeHub.Controls;
-using BridgeHub.Core;
-using BridgeHub.Forms;
-using MetroFramework.Forms;
 
-namespace BridgeHub
+namespace BridgeHub.Forms
 {
     public partial class MainForm : MetroForm
     {
         public MainForm()
         {
             InitializeComponent();
+            ProgressSpinner.Visible = true;
+        }
+
+        private void RenderLightControls()
+        {
+            this.DashbordLayout.Controls.Clear();
 
             var lights = BridgeApi.GetLights();
             int devices = lights.Count;
@@ -26,11 +30,10 @@ namespace BridgeHub
                 this.DashbordLayout.Controls.Add(new LightDashboardControl(lights[row].Id)
                 {
                     Anchor = (AnchorStyles.Left | AnchorStyles.Right)
-
                 }, 0, this.DashbordLayout.RowCount - 1);
             }
 
-            Console.WriteLine(Helper.ConvertRgbToXy(177, 40, 40));
+            ProgressSpinner.Visible = false;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -40,7 +43,7 @@ namespace BridgeHub
         }
 
         // Menu Items
-        
+
         private void MainForm_Resize(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
@@ -56,7 +59,7 @@ namespace BridgeHub
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
         {
-           this.Close();
+            this.Close();
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
@@ -83,5 +86,13 @@ namespace BridgeHub
             this.WindowState = FormWindowState.Normal;
         }
 
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            RenderLightControls();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+        }
     }
 }

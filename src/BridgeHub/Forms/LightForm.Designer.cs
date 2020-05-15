@@ -87,7 +87,7 @@
             this.BrightnessSlider.LargeChange = ((uint)(10u));
             this.BrightnessSlider.Location = new System.Drawing.Point(23, 106);
             this.BrightnessSlider.Maximum = 254;
-            this.BrightnessSlider.Minimum = 1;
+            this.BrightnessSlider.Minimum = 0;
             this.BrightnessSlider.MouseWheelBarPartitions = 10;
             this.BrightnessSlider.Name = "BrightnessSlider";
             this.BrightnessSlider.Size = new System.Drawing.Size(342, 23);
