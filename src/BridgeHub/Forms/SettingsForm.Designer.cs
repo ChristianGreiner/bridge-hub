@@ -50,7 +50,7 @@
             // IPAdressLabel
             // 
             this.IPAdressLabel.AutoSize = true;
-            this.IPAdressLabel.CustomBackground = false;
+            //this.IPAdressLabel.CustomBackground = false;
             this.IPAdressLabel.FontSize = MetroFramework.MetroLabelSize.Medium;
             this.IPAdressLabel.FontWeight = MetroFramework.MetroLabelWeight.Light;
             this.IPAdressLabel.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;

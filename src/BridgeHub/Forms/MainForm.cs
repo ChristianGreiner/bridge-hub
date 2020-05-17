@@ -1,39 +1,76 @@
 ﻿using BridgeHub.Controls;
 using BridgeHub.Core;
-using MetroFramework.Forms;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 namespace BridgeHub.Forms
 {
     public partial class MainForm : MetroForm
     {
+        private readonly Dictionary<int, LightDashboardControl> lightControls;
+
         public MainForm()
         {
             InitializeComponent();
-            ProgressSpinner.Visible = true;
+
+            this.lightControls = new Dictionary<int, LightDashboardControl>();
+            this.FocusMe();
+
+            this.RefreshTimer.Start();
         }
 
-        private void RenderLightControls()
+        private async void FetchLights()
         {
-            this.DashbordLayout.Controls.Clear();
+            this.LoadingSpinner.Visible = true;
 
-            var lights = BridgeApi.GetLights();
-            int devices = lights.Count;
-            int rows = (int)Math.Ceiling((devices / 2f));
+            var lights = await BridgeApi.GetLights();
 
-            for (int row = 0; row < lights.Count; row++)
+            // If new light added
+            if (lightControls.Count != lights.Count)
             {
-                this.DashbordLayout.RowCount += 1;
-
-                this.DashbordLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize, 0f));
-                this.DashbordLayout.Controls.Add(new LightDashboardControl(lights[row].Id)
+                this.lightControls.Clear();
+                this.DashbordLayout.Controls.Clear();
+                int rows = (int)Math.Ceiling((lights.Count / 2f));
+                int lightIndex = 0;
+                for (int row = 0; row < rows; row++)
                 {
-                    Anchor = (AnchorStyles.Left | AnchorStyles.Right)
-                }, 0, this.DashbordLayout.RowCount - 1);
+                    this.DashbordLayout.RowCount += 1;
+
+                    this.DashbordLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (lightIndex < lights.Count)
+                        {
+                            var lightControl = new LightDashboardControl(lights[lightIndex].Id)
+                            {
+                                Anchor = (AnchorStyles.Left | AnchorStyles.Right)
+                            };
+
+                            this.lightControls.Add(lights[lightIndex].Id, lightControl);
+                            this.DashbordLayout.Controls.Add(lightControl, i, this.DashbordLayout.RowCount - 1);
+
+                            lightIndex++;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // just update values
+                foreach (var light in lights)
+                {
+                    if (this.lightControls.ContainsKey(light.Id))
+                    {
+                        this.lightControls[light.Id].UpdateValues(light);
+                        this.lightControls[light.Id].Invalidate();
+                    }
+                }
             }
 
-            ProgressSpinner.Visible = false;
+           
+            this.LoadingSpinner.Visible = false;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -88,11 +125,12 @@ namespace BridgeHub.Forms
 
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            RenderLightControls();
+            FetchLights();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void RefreshTimer_Tick(object sender, EventArgs e)
         {
+            FetchLights();
         }
     }
 }

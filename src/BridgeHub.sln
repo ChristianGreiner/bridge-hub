@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeHub", "BridgeHub\Brid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorWheel", "ColorPickerLibrary\ColorWheel\ColorWheel.csproj", "{A9F7F23D-AE72-4FC9-9B55-FCF21F0AE333}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeHub.Core", "BridgeHub.Core\BridgeHub.Core.csproj", "{C6010A52-7E3D-4CE3-B65E-371FC726CDE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A9F7F23D-AE72-4FC9-9B55-FCF21F0AE333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9F7F23D-AE72-4FC9-9B55-FCF21F0AE333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9F7F23D-AE72-4FC9-9B55-FCF21F0AE333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6010A52-7E3D-4CE3-B65E-371FC726CDE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6010A52-7E3D-4CE3-B65E-371FC726CDE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6010A52-7E3D-4CE3-B65E-371FC726CDE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6010A52-7E3D-4CE3-B65E-371FC726CDE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

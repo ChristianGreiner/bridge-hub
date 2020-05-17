@@ -33,14 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MetroFramework, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ModernUI.2.0.0\lib\net20\MetroFramework.dll</HintPath>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp, Version=106.11.3.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.106.11.3\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,10 +60,6 @@
     <Compile Include="Controls\LightDashboardControl.Designer.cs">
       <DependentUpon>LightDashboardControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\BridgeApi.cs" />
-    <Compile Include="Core\Helper.cs" />
-    <Compile Include="Core\HueXYZ.cs" />
-    <Compile Include="Core\Light.cs" />
     <Compile Include="Forms\LightForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +116,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BridgeHub.Core\BridgeHub.Core.csproj">
+      <Project>{c6010a52-7e3d-4ce3-b65e-371fc726cde8}</Project>
+      <Name>BridgeHub.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ColorPickerLibrary\ColorWheel\ColorWheel.csproj">
       <Project>{a9f7f23d-ae72-4fc9-9b55-fcf21f0ae333}</Project>
       <Name>ColorWheel</Name>

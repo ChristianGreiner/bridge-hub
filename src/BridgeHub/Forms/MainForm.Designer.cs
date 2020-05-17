@@ -34,25 +34,31 @@
             this.TrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToogleLightsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LightsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.TestLightMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DashbordLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.ProgressSpinner = new MetroFramework.Controls.MetroProgressSpinner();
+            this.LoadingSpinner = new MetroFramework.Controls.MetroProgressSpinner();
+            this.RefreshButton = new System.Windows.Forms.PictureBox();
+            this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.TrayMenu.SuspendLayout();
+            this.LightsMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshButton)).BeginInit();
             this.SuspendLayout();
             // 
             // SettingsButton
             // 
             this.SettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SettingsButton.Highlight = false;
-            this.SettingsButton.Location = new System.Drawing.Point(520, 56);
+            this.SettingsButton.Location = new System.Drawing.Point(542, 56);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(120, 36);
             this.SettingsButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.SettingsButton.StyleManager = null;
             this.SettingsButton.TabIndex = 0;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.SettingsButton.UseSelectable = true;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // TrayIcon
@@ -70,29 +76,55 @@
             this.TrayMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(16)))));
             this.TrayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMenuItem,
+            this.ToogleLightsMenuItem,
             this.toolStripSeparator1,
             this.ExitMenuItem});
             this.TrayMenu.Name = "TrayMenu";
             this.TrayMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.TrayMenu.Size = new System.Drawing.Size(167, 54);
+            this.TrayMenu.Size = new System.Drawing.Size(181, 98);
             // 
             // openMenuItem
             // 
             this.openMenuItem.ForeColor = System.Drawing.Color.White;
             this.openMenuItem.Name = "openMenuItem";
-            this.openMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openMenuItem.Text = "Open Bridge Hub";
+            // 
+            // ToogleLightsMenuItem
+            // 
+            this.ToogleLightsMenuItem.DropDown = this.LightsMenu;
+            this.ToogleLightsMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ToogleLightsMenuItem.Name = "ToogleLightsMenuItem";
+            this.ToogleLightsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ToogleLightsMenuItem.Text = "Toogle Lights";
+            // 
+            // LightsMenu
+            // 
+            this.LightsMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(16)))));
+            this.LightsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TestLightMenuItem});
+            this.LightsMenu.Name = "TrayMenu";
+            this.LightsMenu.OwnerItem = this.ToogleLightsMenuItem;
+            this.LightsMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.LightsMenu.Size = new System.Drawing.Size(125, 26);
+            // 
+            // TestLightMenuItem
+            // 
+            this.TestLightMenuItem.ForeColor = System.Drawing.Color.White;
+            this.TestLightMenuItem.Name = "TestLightMenuItem";
+            this.TestLightMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.TestLightMenuItem.Text = "Test Light";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.ForeColor = System.Drawing.Color.White;
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ExitMenuItem.Text = "Exit Bridge Hub";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
@@ -101,45 +133,64 @@
             this.DashbordLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DashbordLayout.ColumnCount = 1;
+            this.DashbordLayout.AutoScroll = true;
+            this.DashbordLayout.ColumnCount = 2;
+            this.DashbordLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.DashbordLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.DashbordLayout.Location = new System.Drawing.Point(23, 98);
             this.DashbordLayout.Name = "DashbordLayout";
             this.DashbordLayout.RowCount = 1;
             this.DashbordLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.DashbordLayout.Size = new System.Drawing.Size(617, 442);
+            this.DashbordLayout.Size = new System.Drawing.Size(639, 414);
             this.DashbordLayout.TabIndex = 1;
             // 
-            // ProgressSpinner
+            // LoadingSpinner
             // 
-            this.ProgressSpinner.CustomBackground = false;
-            this.ProgressSpinner.Location = new System.Drawing.Point(300, 28);
-            this.ProgressSpinner.Maximum = 100;
-            this.ProgressSpinner.Name = "ProgressSpinner";
-            this.ProgressSpinner.Size = new System.Drawing.Size(64, 64);
-            this.ProgressSpinner.Style = MetroFramework.MetroColorStyle.Blue;
-            this.ProgressSpinner.StyleManager = null;
-            this.ProgressSpinner.TabIndex = 0;
-            this.ProgressSpinner.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.LoadingSpinner.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LoadingSpinner.Location = new System.Drawing.Point(310, 235);
+            this.LoadingSpinner.Maximum = 100;
+            this.LoadingSpinner.Name = "LoadingSpinner";
+            this.LoadingSpinner.Size = new System.Drawing.Size(64, 64);
+            this.LoadingSpinner.TabIndex = 2;
+            this.LoadingSpinner.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.LoadingSpinner.UseSelectable = true;
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshButton.Image")));
+            this.RefreshButton.Location = new System.Drawing.Point(463, 42);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(24, 24);
+            this.RefreshButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.RefreshButton.TabIndex = 3;
+            this.RefreshButton.TabStop = false;
+            // 
+            // RefreshTimer
+            // 
+            this.RefreshTimer.Enabled = true;
+            this.RefreshTimer.Interval = 10000;
+            this.RefreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 563);
-            this.Controls.Add(this.ProgressSpinner);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(685, 535);
+            this.Controls.Add(this.RefreshButton);
+            this.Controls.Add(this.LoadingSpinner);
             this.Controls.Add(this.DashbordLayout);
             this.Controls.Add(this.SettingsButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "MainForm";
             this.Text = "Bridge Hub";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.TrayMenu.ResumeLayout(false);
+            this.LightsMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshButton)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -153,7 +204,12 @@
         private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem openMenuItem;
-        private MetroFramework.Controls.MetroProgressSpinner ProgressSpinner;
+        private MetroFramework.Controls.MetroProgressSpinner LoadingSpinner;
+        private System.Windows.Forms.PictureBox RefreshButton;
+        private System.Windows.Forms.Timer RefreshTimer;
+        private System.Windows.Forms.ToolStripMenuItem ToogleLightsMenuItem;
+        private System.Windows.Forms.ContextMenuStrip LightsMenu;
+        private System.Windows.Forms.ToolStripMenuItem TestLightMenuItem;
     }
 }
 

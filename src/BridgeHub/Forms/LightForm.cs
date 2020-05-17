@@ -6,20 +6,12 @@ namespace BridgeHub.Forms
 {
     public partial class LightForm : MetroForm
     {
-        private bool dragging = false;
-        private int lightId;
         private Light light;
 
-        public LightForm(int lightId)
+        public LightForm(Light light)
         {
-            this.lightId = lightId;
-            this.light = BridgeApi.GetLight(lightId);
-
+            this.light = light;
             InitializeComponent();
-
-            this.Text = this.light.Name;
-            this.OnToggle.Checked = this.light.On;
-            this.BrightnessSlider.Value = light.Brightness;
         }
 
         private void ColorWheel_ColorChanged(object sender, EventArgs e)
@@ -27,24 +19,27 @@ namespace BridgeHub.Forms
             // Send HTTP Request
         }
 
-        private async void OnToggle_CheckedChanged(object sender, EventArgs e)
+        private async void OnToggle_CheckedChanged(object sender, System.EventArgs e)
         {
-            await BridgeApi.SetOn(this.lightId, this.OnToggle.Checked);
-        }
-
-        private void BrightnessSlider_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
-        {
-            this.dragging = true;
+            await BridgeApi.SetOn(this.light.Id, this.OnToggle.Checked);
         }
 
         private async void BrightnessSlider_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if (this.dragging)
-            {
-                this.dragging = false;
+            await BridgeApi.SetBrightness(this.light.Id, this.BrightnessSlider.Value);
+        }
 
-                await BridgeApi.SetBrightness(this.lightId, this.BrightnessSlider.Value);
-            }
+        private void LightForm_Load(object sender, EventArgs e)
+        {
+            this.Text = this.light.Name;
+            this.OnToggle.Checked = this.light.On;
+            this.BrightnessSlider.Value = this.light.Brightness;
+            this.ColorWheel.Enabled = this.light.Color != null;
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

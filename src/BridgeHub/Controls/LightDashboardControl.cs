@@ -1,13 +1,16 @@
-﻿using BridgeHub.Core;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+using BridgeHub.Core;
 using BridgeHub.Forms;
+using MetroFramework;
 using MetroFramework.Controls;
 
 namespace BridgeHub.Controls
 {
     public partial class LightDashboardControl : MetroUserControl
     {
-        private bool dragging = false;
-        private int lightId;
+        private readonly int lightId;
         private Light light;
 
         public LightDashboardControl(int lightId)
@@ -15,11 +18,6 @@ namespace BridgeHub.Controls
             this.lightId = lightId;
 
             InitializeComponent();
-
-            this.light = BridgeApi.GetLight(lightId);
-            this.DeviceName.Text = light.Name;
-            this.OnToggle.Checked = light.On;
-            this.BrightnessSlider.Value = light.Brightness;
         }
 
         private void StateImage_Click(object sender, System.EventArgs e)
@@ -34,28 +32,41 @@ namespace BridgeHub.Controls
 
         private void ShowLightForm()
         {
-            LightForm lightForm = new LightForm(this.lightId);
+            LightForm lightForm = new LightForm(this.light);
             lightForm.ShowDialog(this);
         }
 
         private async void OnToggle_CheckedChanged(object sender, System.EventArgs e)
         {
-            await BridgeApi.SetOn(this.lightId, this.OnToggle.Checked);
+            this.light.On = this.OnToggle.Checked;
+            await BridgeApi.SetOn(this.lightId, this.light.On);
         }
 
         private async void BrightnessSlider_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            if (this.dragging)
-            {
-                this.dragging = false;
-
-                await BridgeApi.SetBrightness(this.lightId, this.BrightnessSlider.Value);
-            }
+            this.light.Brightness = this.BrightnessSlider.Value;
+            var success = await BridgeApi.SetBrightness(this.lightId, this.light.Brightness);
+            if (!success)
+                MetroMessageBox.Show(this, "The brightness could not been set!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void BrightnessSlider_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
+        public void UpdateValues(Light light)
         {
-            this.dragging = true;
+            this.light = light;
+            this.DeviceName.Text = this.light.Name;
+            this.OnToggle.Checked = this.light.On;
+            this.BrightnessSlider.Value = this.light.Brightness;
+            if (this.light.Color != null)
+            {
+                var color = HueXY.ConvertXyToRgb(this.light.Color.X, this.light.Color.Y, 255f);
+                this.LightColorIndicator.BackColor = color;
+            }
+
+        }
+        private async void LightDashboardControl_Load(object sender, EventArgs e)
+        {
+            this.light = await BridgeApi.GetLight(lightId);
+            this.UpdateValues(light);
         }
     }
 }
