@@ -1,10 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using BridgeHub.Core;
+﻿using BridgeHub.Core;
 using BridgeHub.Forms;
 using MetroFramework;
 using MetroFramework.Controls;
+using System;
+using System.Windows.Forms;
 
 namespace BridgeHub.Controls
 {
@@ -61,8 +60,8 @@ namespace BridgeHub.Controls
                 var color = HueXY.ConvertXyToRgb(this.light.Color.X, this.light.Color.Y, 255f);
                 this.LightColorIndicator.BackColor = color;
             }
-
         }
+
         private async void LightDashboardControl_Load(object sender, EventArgs e)
         {
             this.light = await BridgeApi.GetLight(lightId);

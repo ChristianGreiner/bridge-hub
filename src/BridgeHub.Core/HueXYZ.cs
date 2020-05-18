@@ -9,6 +9,7 @@ namespace BridgeHub.Core
         public float X { get; }
         public float Y { get; }
         public float Bri { get; }
+
         public HueXY()
         {
         }
@@ -67,12 +68,11 @@ namespace BridgeHub.Core
 
         public static Color ConvertXyToRgb(float xVal, float yVal, float bri = 255)
         {
-
             // by https://stackoverflow.com/questions/22894498/philips-hue-convert-xy-from-api-to-hex-or-rgb
 
             // Calculate XYZ
             float zDif = 1.0f - xVal - yVal;
-            
+
             float y = bri / 255f; // Brightness of lamp
             float x = (y / yVal) * xVal;
             float z = (y / yVal) * zDif;
@@ -86,7 +86,7 @@ namespace BridgeHub.Core
             green = CorrectGamma(green);
             blue = CorrectGamma(blue);
 
-            float[] rgbArr = {red, green, blue};
+            float[] rgbArr = { red, green, blue };
             float maxValue = rgbArr.Max();
 
             red /= maxValue;
@@ -128,7 +128,8 @@ namespace BridgeHub.Core
 
         private static float CorrectGamma(float value)
         {
-            if (value <= 0.0031308f) {
+            if (value <= 0.0031308f)
+            {
                 value = (12.92f * value);
             }
             else

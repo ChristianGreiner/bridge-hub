@@ -1,9 +1,9 @@
 ﻿using BridgeHub.Controls;
 using BridgeHub.Core;
+using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MetroFramework.Forms;
 
 namespace BridgeHub.Forms
 {
@@ -69,7 +69,6 @@ namespace BridgeHub.Forms
                 }
             }
 
-           
             this.LoadingSpinner.Visible = false;
         }
 

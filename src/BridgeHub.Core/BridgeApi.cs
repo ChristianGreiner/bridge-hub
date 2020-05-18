@@ -31,7 +31,6 @@ namespace BridgeHub.Core
                 {
                     lights.Add(new Light((int)float.Parse(light.Key), JObject.FromObject(light.Value)));
                 }
-
             }
             return lights;
         }

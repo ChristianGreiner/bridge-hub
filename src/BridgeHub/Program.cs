@@ -1,7 +1,7 @@
 ﻿using BridgeHub.Core;
+using BridgeHub.Forms;
 using System;
 using System.Windows.Forms;
-using BridgeHub.Forms;
 
 namespace BridgeHub
 {

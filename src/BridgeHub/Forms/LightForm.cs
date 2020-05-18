@@ -1,7 +1,7 @@
 ﻿using BridgeHub.Core;
+using BridgeHub.Extensions;
 using MetroFramework.Forms;
 using System;
-using BridgeHub.Extensions;
 
 namespace BridgeHub.Forms
 {
@@ -15,7 +15,7 @@ namespace BridgeHub.Forms
             InitializeComponent();
         }
 
-        private  void ColorWheel_ColorChanged(object sender, EventArgs e)
+        private void ColorWheel_ColorChanged(object sender, EventArgs e)
         {
             this.LightColorIndicator.BackColor = this.ColorWheel.Color;
         }
@@ -36,7 +36,7 @@ namespace BridgeHub.Forms
             this.OnToggle.Checked = this.light.On;
             this.BrightnessSlider.Value = this.light.Brightness;
             this.ColorWheel.Enabled = this.light.Color != null;
-            
+
             if (this.light.Color != null)
             {
                 this.ColorWheel.Color = light.Color.ToRgb();

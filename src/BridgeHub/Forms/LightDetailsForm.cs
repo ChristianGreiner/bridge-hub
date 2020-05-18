@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using BridgeHub.Core;
+﻿using BridgeHub.Core;
 using MetroFramework.Forms;
 
 namespace BridgeHub.Forms
@@ -7,6 +6,7 @@ namespace BridgeHub.Forms
     public partial class LightDetailsForm : MetroForm
     {
         private readonly Light light;
+
         public LightDetailsForm(Light light)
         {
             this.light = light;

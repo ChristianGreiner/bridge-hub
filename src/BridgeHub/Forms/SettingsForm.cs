@@ -1,9 +1,8 @@
-﻿using System;
+﻿using MetroFramework;
+using MetroFramework.Forms;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using MetroFramework;
-using MetroFramework.Components;
-using MetroFramework.Forms;
 
 namespace BridgeHub.Forms
 {
