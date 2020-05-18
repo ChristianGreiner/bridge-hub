@@ -49,9 +49,7 @@ namespace BridgeHub.Core
         public static async Task<bool> SetBrightness(int deviceId, float brightness)
         {
             var request = MakeRequest("/lights/" + deviceId + "/state", Method.PUT);
-
             var json = JsonConvert.SerializeObject(new { bri = brightness });
-            request.AddParameter("application/json", json, ParameterType.RequestBody);
             var response = await SendRequest(request, json);
             return response.IsSuccessful;
         }
@@ -60,6 +58,16 @@ namespace BridgeHub.Core
         {
             var request = MakeRequest("/lights/" + deviceId + "/state", Method.PUT);
             var json = JsonConvert.SerializeObject(new { on = onState });
+            var response = await SendRequest(request, json);
+            return response.IsSuccessful;
+        }
+
+        public static async Task<bool> SetColor(int deviceId, int r, int g, int b)
+        {
+            var request = MakeRequest("/lights/" + deviceId + "/state", Method.PUT);
+            var hueColor = HueXY.ConvertRgbToXy(r, g, b);
+            var json = JsonConvert.SerializeObject(new { xy = new JArray(hueColor.X, hueColor.Y) });
+            Console.WriteLine(json);
             var response = await SendRequest(request, json);
             return response.IsSuccessful;
         }

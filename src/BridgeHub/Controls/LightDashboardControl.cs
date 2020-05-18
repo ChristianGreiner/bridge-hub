@@ -68,5 +68,10 @@ namespace BridgeHub.Controls
             this.light = await BridgeApi.GetLight(lightId);
             this.UpdateValues(light);
         }
+
+        private void DeviceName_Click(object sender, EventArgs e)
+        {
+            ShowLightForm();
+        }
     }
 }

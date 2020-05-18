@@ -35,14 +35,16 @@
             this.ColorWheel = new MechanikaDesign.WinForms.UI.ColorPicker.ColorWheel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.DetailsButton = new MetroFramework.Controls.MetroButton();
+            this.LightColorIndicator = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(157, 425);
+            this.SaveButton.Location = new System.Drawing.Point(192, 404);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(120, 36);
+            this.SaveButton.Size = new System.Drawing.Size(85, 32);
             this.SaveButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.SaveButton.TabIndex = 1;
             this.SaveButton.Text = "Save";
@@ -55,7 +57,7 @@
             this.OnToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OnToggle.AutoSize = true;
             this.OnToggle.DisplayStatus = false;
-            this.OnToggle.Location = new System.Drawing.Point(231, 34);
+            this.OnToggle.Location = new System.Drawing.Point(227, 30);
             this.OnToggle.Name = "OnToggle";
             this.OnToggle.Size = new System.Drawing.Size(50, 17);
             this.OnToggle.Style = MetroFramework.MetroColorStyle.Blue;
@@ -70,7 +72,7 @@
             this.BrightnessSlider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BrightnessSlider.BackColor = System.Drawing.Color.Transparent;
-            this.BrightnessSlider.Location = new System.Drawing.Point(27, 93);
+            this.BrightnessSlider.Location = new System.Drawing.Point(23, 93);
             this.BrightnessSlider.Maximum = 255;
             this.BrightnessSlider.Name = "BrightnessSlider";
             this.BrightnessSlider.Size = new System.Drawing.Size(254, 23);
@@ -85,17 +87,18 @@
             // 
             this.ColorWheel.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.ColorWheel.Enabled = false;
-            this.ColorWheel.Location = new System.Drawing.Point(27, 151);
+            this.ColorWheel.Location = new System.Drawing.Point(23, 141);
             this.ColorWheel.Name = "ColorWheel";
             this.ColorWheel.Size = new System.Drawing.Size(250, 250);
             this.ColorWheel.TabIndex = 0;
             this.ColorWheel.Text = "ColorWheel";
             this.ColorWheel.ColorChanged += new System.EventHandler(this.ColorWheel_ColorChanged);
+            this.ColorWheel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ColorWheel_MouseUp);
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(27, 71);
+            this.metroLabel1.Location = new System.Drawing.Point(23, 71);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(68, 19);
             this.metroLabel1.TabIndex = 6;
@@ -105,18 +108,41 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(27, 129);
+            this.metroLabel2.Location = new System.Drawing.Point(23, 119);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(42, 19);
             this.metroLabel2.TabIndex = 7;
             this.metroLabel2.Text = "Color";
             this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
+            // DetailsButton
+            // 
+            this.DetailsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DetailsButton.Location = new System.Drawing.Point(101, 404);
+            this.DetailsButton.Name = "DetailsButton";
+            this.DetailsButton.Size = new System.Drawing.Size(85, 32);
+            this.DetailsButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.DetailsButton.TabIndex = 8;
+            this.DetailsButton.Text = "Details";
+            this.DetailsButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.DetailsButton.UseSelectable = true;
+            this.DetailsButton.Click += new System.EventHandler(this.DetailsButton_Click);
+            // 
+            // LightColorIndicator
+            // 
+            this.LightColorIndicator.BackColor = System.Drawing.Color.White;
+            this.LightColorIndicator.Location = new System.Drawing.Point(0, 22);
+            this.LightColorIndicator.Name = "LightColorIndicator";
+            this.LightColorIndicator.Size = new System.Drawing.Size(5, 30);
+            this.LightColorIndicator.TabIndex = 9;
+            // 
             // LightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 484);
+            this.ClientSize = new System.Drawing.Size(300, 459);
+            this.Controls.Add(this.LightColorIndicator);
+            this.Controls.Add(this.DetailsButton);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.BrightnessSlider);
@@ -124,6 +150,8 @@
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ColorWheel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LightForm";
             this.Text = "LIGHT NAME";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -141,5 +169,7 @@
         private MetroFramework.Controls.MetroTrackBar BrightnessSlider;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroButton DetailsButton;
+        private System.Windows.Forms.Panel LightColorIndicator;
     }
 }

@@ -51,9 +51,9 @@
             // SettingsButton
             // 
             this.SettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SettingsButton.Location = new System.Drawing.Point(542, 56);
+            this.SettingsButton.Location = new System.Drawing.Point(562, 36);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(120, 36);
+            this.SettingsButton.Size = new System.Drawing.Size(100, 24);
             this.SettingsButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.SettingsButton.TabIndex = 0;
             this.SettingsButton.Text = "Settings";
@@ -81,13 +81,13 @@
             this.ExitMenuItem});
             this.TrayMenu.Name = "TrayMenu";
             this.TrayMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.TrayMenu.Size = new System.Drawing.Size(181, 98);
+            this.TrayMenu.Size = new System.Drawing.Size(167, 76);
             // 
             // openMenuItem
             // 
             this.openMenuItem.ForeColor = System.Drawing.Color.White;
             this.openMenuItem.Name = "openMenuItem";
-            this.openMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(166, 22);
             this.openMenuItem.Text = "Open Bridge Hub";
             // 
             // ToogleLightsMenuItem
@@ -95,7 +95,7 @@
             this.ToogleLightsMenuItem.DropDown = this.LightsMenu;
             this.ToogleLightsMenuItem.ForeColor = System.Drawing.Color.White;
             this.ToogleLightsMenuItem.Name = "ToogleLightsMenuItem";
-            this.ToogleLightsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ToogleLightsMenuItem.Size = new System.Drawing.Size(166, 22);
             this.ToogleLightsMenuItem.Text = "Toogle Lights";
             // 
             // LightsMenu
@@ -118,13 +118,13 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.ForeColor = System.Drawing.Color.White;
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(166, 22);
             this.ExitMenuItem.Text = "Exit Bridge Hub";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
@@ -137,11 +137,11 @@
             this.DashbordLayout.ColumnCount = 2;
             this.DashbordLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.DashbordLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.DashbordLayout.Location = new System.Drawing.Point(23, 98);
+            this.DashbordLayout.Location = new System.Drawing.Point(23, 66);
             this.DashbordLayout.Name = "DashbordLayout";
             this.DashbordLayout.RowCount = 1;
             this.DashbordLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.DashbordLayout.Size = new System.Drawing.Size(639, 414);
+            this.DashbordLayout.Size = new System.Drawing.Size(639, 446);
             this.DashbordLayout.TabIndex = 1;
             // 
             // LoadingSpinner
@@ -158,12 +158,13 @@
             // RefreshButton
             // 
             this.RefreshButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshButton.Image")));
-            this.RefreshButton.Location = new System.Drawing.Point(463, 42);
+            this.RefreshButton.Location = new System.Drawing.Point(148, 28);
             this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(24, 24);
+            this.RefreshButton.Size = new System.Drawing.Size(20, 20);
             this.RefreshButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.RefreshButton.TabIndex = 3;
             this.RefreshButton.TabStop = false;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // RefreshTimer
             // 
@@ -182,6 +183,7 @@
             this.Controls.Add(this.DashbordLayout);
             this.Controls.Add(this.SettingsButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Bridge Hub";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;

@@ -9,7 +9,6 @@ namespace BridgeHub.Core
         public float X { get; }
         public float Y { get; }
         public float Bri { get; }
-
         public HueXY()
         {
         }
@@ -23,7 +22,12 @@ namespace BridgeHub.Core
 
         public override string ToString()
         {
-            return this.X + "," + this.Y;
+            return this.X.ToString().Replace(',', '.') + "," + this.Y.ToString().Replace(',', '.');
+        }
+
+        public Color ToRgb()
+        {
+            return ConvertXyToRgb(this.X, this.Y);
         }
 
         public static HueXY ConvertRgbToXy(int r, int g, int b)

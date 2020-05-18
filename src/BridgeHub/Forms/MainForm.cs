@@ -132,5 +132,10 @@ namespace BridgeHub.Forms
         {
             FetchLights();
         }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            FetchLights();
+        }
     }
 }

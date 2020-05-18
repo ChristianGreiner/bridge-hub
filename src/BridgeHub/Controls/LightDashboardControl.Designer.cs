@@ -49,6 +49,7 @@
             this.DeviceName.TabIndex = 0;
             this.DeviceName.Text = "Light 01";
             this.DeviceName.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.DeviceName.Click += new System.EventHandler(this.DeviceName_Click);
             // 
             // StateImage
             // 
