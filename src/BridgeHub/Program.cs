@@ -13,6 +13,7 @@ namespace BridgeHub
         [STAThread]
         private static void Main()
         {
+            Settings.Instance.Load();
             BridgeApi.Init();
 
             Application.EnableVisualStyles();

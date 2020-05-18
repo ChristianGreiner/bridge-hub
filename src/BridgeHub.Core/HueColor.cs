@@ -4,17 +4,17 @@ using System.Linq;
 
 namespace BridgeHub.Core
 {
-    public class HueXY
+    public class HueColor
     {
         public float X { get; }
         public float Y { get; }
         public float Bri { get; }
 
-        public HueXY()
+        public HueColor()
         {
         }
 
-        public HueXY(float x, float y, float bri = 0f)
+        public HueColor(float x, float y, float bri = 0f)
         {
             this.X = x;
             this.Y = y;
@@ -31,7 +31,7 @@ namespace BridgeHub.Core
             return ConvertXyToRgb(this.X, this.Y);
         }
 
-        public static HueXY ConvertRgbToXy(int r, int g, int b)
+        public static HueColor ConvertRgbToXy(int r, int g, int b)
         {
             // Normalize the values to 1
             float red = NormalizeColor(r);
@@ -63,7 +63,7 @@ namespace BridgeHub.Core
                 y /= sum;
             }
 
-            return new HueXY((float)Math.Round(x, 4), (float)Math.Round(y, 4), (float)Math.Round(y * 255));
+            return new HueColor((float)Math.Round(x, 4), (float)Math.Round(y, 4), (float)Math.Round(y * 255));
         }
 
         public static Color ConvertXyToRgb(float xVal, float yVal, float bri = 255)

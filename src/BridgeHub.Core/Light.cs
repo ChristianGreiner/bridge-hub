@@ -14,7 +14,7 @@ namespace BridgeHub.Core
         public String Type { get; set; }
         public int Brightness { get; set; }
         public int Sat { get; set; }
-        public HueXY Color { get; set; }
+        public HueColor Color { get; set; }
         public bool On { get; set; }
 
         public Light(int id)
@@ -40,7 +40,7 @@ namespace BridgeHub.Core
             if (json.GetValue("state").SelectToken("xy") != null)
             {
                 var colors = json.GetValue("state").SelectToken("xy").ToArray();
-                this.Color = new HueXY(float.Parse(colors[0].ToString()), float.Parse(colors[1].ToString()));
+                this.Color = new HueColor(float.Parse(colors[0].ToString()), float.Parse(colors[1].ToString()));
             }
         }
     }

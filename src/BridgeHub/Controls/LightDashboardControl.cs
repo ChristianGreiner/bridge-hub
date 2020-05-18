@@ -57,7 +57,7 @@ namespace BridgeHub.Controls
             this.BrightnessSlider.Value = this.light.Brightness;
             if (this.light.Color != null)
             {
-                var color = HueXY.ConvertXyToRgb(this.light.Color.X, this.light.Color.Y, 255f);
+                var color = HueColor.ConvertXyToRgb(this.light.Color.X, this.light.Color.Y, 255f);
                 this.LightColorIndicator.BackColor = color;
             }
         }
