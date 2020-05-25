@@ -14,7 +14,7 @@ namespace BridgeHub
         private static void Main()
         {
             Settings.Instance.Load();
-            BridgeApi.Init();
+            BridgeApi.Init(Settings.Instance.BridgeServer);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

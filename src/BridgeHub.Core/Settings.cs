@@ -8,7 +8,7 @@ namespace BridgeHub.Core
     {
         public const string FileName = "Settings.ini";
 
-        public string BridgeServer { get; set; } = "localhost/api/devies";
+        public string BridgeServer { get; set; } = "http://localhost/api/devies";
 
         public int UpdateInterval { get; set; } = 300;
 

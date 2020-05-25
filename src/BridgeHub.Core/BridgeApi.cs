@@ -11,9 +11,9 @@ namespace BridgeHub.Core
     {
         public static RestClient Client;
 
-        public static async void Init()
+        public static async void Init(string endpoint)
         {
-            Client = new RestClient("http://localhost/api/2987683a38804f3787fe19781175e6f3/");
+            Client = new RestClient(endpoint);
         }
 
         public static async Task<List<Light>> GetLights()
