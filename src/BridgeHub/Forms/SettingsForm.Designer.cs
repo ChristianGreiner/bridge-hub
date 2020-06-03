@@ -79,7 +79,7 @@
             this.BridgeServerTextBox.CustomButton.UseSelectable = true;
             this.BridgeServerTextBox.CustomButton.Visible = false;
             this.BridgeServerTextBox.Lines = new string[] {
-        "localhost/api/devices"};
+        "http://localhost/api/devices"};
             this.BridgeServerTextBox.Location = new System.Drawing.Point(26, 85);
             this.BridgeServerTextBox.MaxLength = 32767;
             this.BridgeServerTextBox.Name = "BridgeServerTextBox";
@@ -92,7 +92,7 @@
             this.BridgeServerTextBox.Size = new System.Drawing.Size(158, 23);
             this.BridgeServerTextBox.Style = MetroFramework.MetroColorStyle.Blue;
             this.BridgeServerTextBox.TabIndex = 4;
-            this.BridgeServerTextBox.Text = "localhost/api/devices";
+            this.BridgeServerTextBox.Text = "http://localhost/api/devices";
             this.BridgeServerTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.BridgeServerTextBox.UseSelectable = true;
             this.BridgeServerTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -155,7 +155,10 @@
             this.Controls.Add(this.BridgeServerLabel);
             this.Controls.Add(this.SaveButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SettingsForm";
+            this.Resizable = false;
             this.Text = "Settings";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             ((System.ComponentModel.ISupportInitialize)(this.UpdateIntervalUpDown)).EndInit();

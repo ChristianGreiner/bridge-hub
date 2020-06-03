@@ -11,6 +11,8 @@ namespace BridgeHub.Forms
     {
         private readonly Dictionary<int, LightDashboardControl> lightControls;
 
+        private const int GRID_COLS = 2;
+
         public MainForm()
         {
             InitializeComponent();
@@ -32,14 +34,15 @@ namespace BridgeHub.Forms
             {
                 this.lightControls.Clear();
                 this.DashbordLayout.Controls.Clear();
-                int rows = (int)Math.Ceiling((lights.Count / 2f));
+                int rows = (int)Math.Ceiling((lights.Count / (float)GRID_COLS));
                 int lightIndex = 0;
+
                 for (int row = 0; row < rows; row++)
                 {
                     this.DashbordLayout.RowCount += 1;
 
-                    this.DashbordLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                    for (int i = 0; i < 2; i++)
+                    this.DashbordLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 85f));
+                    for (int i = 0; i < (float)GRID_COLS; i++)
                     {
                         if (lightIndex < lights.Count)
                         {
@@ -49,7 +52,7 @@ namespace BridgeHub.Forms
                             };
 
                             this.lightControls.Add(lights[lightIndex].Id, lightControl);
-                            this.DashbordLayout.Controls.Add(lightControl, i, this.DashbordLayout.RowCount - 1);
+                            this.DashbordLayout.Controls.Add(lightControl);
 
                             lightIndex++;
                         }
@@ -64,7 +67,6 @@ namespace BridgeHub.Forms
                     if (this.lightControls.ContainsKey(light.Id))
                     {
                         this.lightControls[light.Id].UpdateValues(light);
-                        this.lightControls[light.Id].Invalidate();
                     }
                 }
             }
@@ -79,7 +81,6 @@ namespace BridgeHub.Forms
         }
 
         // Menu Items
-
         private void MainForm_Resize(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
