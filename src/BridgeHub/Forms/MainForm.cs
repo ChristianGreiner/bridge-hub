@@ -3,6 +3,7 @@ using BridgeHub.Core;
 using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace BridgeHub.Forms
@@ -53,7 +54,7 @@ namespace BridgeHub.Forms
 
                             this.lightControls.Add(lights[lightIndex].Id, lightControl);
                             this.DashbordLayout.Controls.Add(lightControl);
-
+                            
                             lightIndex++;
                         }
                     }
@@ -67,11 +68,35 @@ namespace BridgeHub.Forms
                     if (this.lightControls.ContainsKey(light.Id))
                     {
                         this.lightControls[light.Id].UpdateValues(light);
+                        this.lightControls[light.Id].Invalidate();
                     }
                 }
+
+                this.UpdateLightsMenuStrip(lights);
             }
 
             this.LoadingSpinner.Visible = false;
+        }
+
+        private void UpdateLightsMenuStrip(List<Light> lights)
+        {
+            this.LightsContextMenu.Items.Clear();
+            foreach (var light in lights)
+            {
+                // Update Lights Menu
+
+                ToolStripMenuItem lightItem = new ToolStripMenuItem(light.Name);
+                lightItem.Checked = light.On;
+                lightItem.ForeColor = Color.White;
+                lightItem.Click += (sender, args) =>
+                {
+                    _ = BridgeApi.SetOn(light.Id, lightItem.Checked);
+                    this.FetchLights();
+                    lightItem.Checked = !lightItem.Checked;
+                };
+
+                this.LightsContextMenu.Items.Add(lightItem);
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -87,6 +112,11 @@ namespace BridgeHub.Forms
             {
                 this.Hide();
             }
+        }
+
+        private void OpenMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowForm();
         }
 
         private void TrayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -107,7 +137,10 @@ namespace BridgeHub.Forms
 
         private void TrayIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            ShowForm();
+            if (e.Button == MouseButtons.Left)
+            {
+                ShowForm();
+            }
         }
 
         private void TrayIcon_DoubleClick(object sender, EventArgs e)

@@ -32,19 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.SettingsButton = new MetroFramework.Controls.MetroButton();
             this.TrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToogleLightsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LightsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.TestLightMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TrayContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LightsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LightsContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.LoadingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DashbordLayout = new System.Windows.Forms.TableLayoutPanel();
             this.LoadingSpinner = new MetroFramework.Controls.MetroProgressSpinner();
             this.RefreshButton = new System.Windows.Forms.PictureBox();
             this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.TrayMenu.SuspendLayout();
-            this.LightsMenu.SuspendLayout();
+            this.TrayContextMenu.SuspendLayout();
+            this.LightsContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RefreshButton)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +63,7 @@
             // 
             // TrayIcon
             // 
-            this.TrayIcon.ContextMenuStrip = this.TrayMenu;
+            this.TrayIcon.ContextMenuStrip = this.TrayContextMenu;
             this.TrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayIcon.Icon")));
             this.TrayIcon.Text = "Bridge Hub";
             this.TrayIcon.Visible = true;
@@ -71,61 +71,64 @@
             this.TrayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_MouseClick);
             this.TrayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_MouseDoubleClick);
             // 
-            // TrayMenu
+            // TrayContextMenu
             // 
-            this.TrayMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(16)))));
-            this.TrayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openMenuItem,
-            this.ToogleLightsMenuItem,
+            this.TrayContextMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.TrayContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenMenuItem,
+            this.LightsMenuItem,
             this.toolStripSeparator1,
             this.ExitMenuItem});
-            this.TrayMenu.Name = "TrayMenu";
-            this.TrayMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.TrayMenu.Size = new System.Drawing.Size(167, 76);
+            this.TrayContextMenu.Name = "contextMenuStrip1";
+            this.TrayContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.TrayContextMenu.ShowImageMargin = false;
+            this.TrayContextMenu.Size = new System.Drawing.Size(142, 76);
             // 
-            // openMenuItem
+            // OpenMenuItem
             // 
-            this.openMenuItem.ForeColor = System.Drawing.Color.White;
-            this.openMenuItem.Name = "openMenuItem";
-            this.openMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.openMenuItem.Text = "Open Bridge Hub";
+            this.OpenMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.OpenMenuItem.ForeColor = System.Drawing.Color.White;
+            this.OpenMenuItem.Name = "OpenMenuItem";
+            this.OpenMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.OpenMenuItem.Text = "Open Bridge Hup";
+            this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
             // 
-            // ToogleLightsMenuItem
+            // LightsMenuItem
             // 
-            this.ToogleLightsMenuItem.DropDown = this.LightsMenu;
-            this.ToogleLightsMenuItem.ForeColor = System.Drawing.Color.White;
-            this.ToogleLightsMenuItem.Name = "ToogleLightsMenuItem";
-            this.ToogleLightsMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.ToogleLightsMenuItem.Text = "Toogle Lights";
+            this.LightsMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.LightsMenuItem.DropDown = this.LightsContextMenu;
+            this.LightsMenuItem.ForeColor = System.Drawing.Color.White;
+            this.LightsMenuItem.Name = "LightsMenuItem";
+            this.LightsMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.LightsMenuItem.Text = "Lights";
             // 
-            // LightsMenu
+            // LightsContextMenu
             // 
-            this.LightsMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(16)))));
-            this.LightsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TestLightMenuItem});
-            this.LightsMenu.Name = "TrayMenu";
-            this.LightsMenu.OwnerItem = this.ToogleLightsMenuItem;
-            this.LightsMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.LightsMenu.Size = new System.Drawing.Size(125, 26);
+            this.LightsContextMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(16)))));
+            this.LightsContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LoadingMenuItem});
+            this.LightsContextMenu.Name = "TrayMenu";
+            this.LightsContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.LightsContextMenu.Size = new System.Drawing.Size(181, 48);
             // 
-            // TestLightMenuItem
+            // LoadingMenuItem
             // 
-            this.TestLightMenuItem.ForeColor = System.Drawing.Color.White;
-            this.TestLightMenuItem.Name = "TestLightMenuItem";
-            this.TestLightMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.TestLightMenuItem.Text = "Test Light";
+            this.LoadingMenuItem.ForeColor = System.Drawing.Color.White;
+            this.LoadingMenuItem.Name = "LoadingMenuItem";
+            this.LoadingMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.LoadingMenuItem.Text = "Loading ...";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.ForeColor = System.Drawing.Color.White;
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.ExitMenuItem.Text = "Exit Bridge Hub";
+            this.ExitMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.ExitMenuItem.Text = "Exit";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
             // DashbordLayout
@@ -190,8 +193,8 @@
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
-            this.TrayMenu.ResumeLayout(false);
-            this.LightsMenu.ResumeLayout(false);
+            this.TrayContextMenu.ResumeLayout(false);
+            this.LightsContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.RefreshButton)).EndInit();
             this.ResumeLayout(false);
 
@@ -202,16 +205,16 @@
         private MetroFramework.Controls.MetroButton SettingsButton;
         private System.Windows.Forms.NotifyIcon TrayIcon;
         private System.Windows.Forms.TableLayoutPanel DashbordLayout;
-        private System.Windows.Forms.ContextMenuStrip TrayMenu;
-        private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem openMenuItem;
         private MetroFramework.Controls.MetroProgressSpinner LoadingSpinner;
         private System.Windows.Forms.PictureBox RefreshButton;
         private System.Windows.Forms.Timer RefreshTimer;
-        private System.Windows.Forms.ToolStripMenuItem ToogleLightsMenuItem;
-        private System.Windows.Forms.ContextMenuStrip LightsMenu;
-        private System.Windows.Forms.ToolStripMenuItem TestLightMenuItem;
+        private System.Windows.Forms.ContextMenuStrip LightsContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem LoadingMenuItem;
+        private System.Windows.Forms.ContextMenuStrip TrayContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem OpenMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LightsMenuItem;
     }
 }
 
